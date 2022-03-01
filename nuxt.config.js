@@ -1,7 +1,7 @@
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
-    title: 'real-cats',
+    title: 'Real Cats',
     htmlAttrs: {
       lang: 'en'
     },
@@ -29,9 +29,9 @@ export default {
     }]
 
   },
-
+  
   env: {
-    API_KEY: 'f7c8f8f8-f7c8-f7c8-f7c8-f7c8f8f8f8f8',
+    API_KEY: '509dbbc9-96bd-4719-ba30-552f34d356e2',
   },
 
   // Global CSS: https://go.nuxtjs.dev/config-css
@@ -40,6 +40,7 @@ export default {
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
     '~/plugins/repositories.js',
+    '~/plugins/services.plugin.js',
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components

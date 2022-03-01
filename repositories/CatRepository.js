@@ -1,6 +1,10 @@
-const resource = 'images/search'
+const resource = 'images'
 export default ($axios) => ({
-  getRandom(limit) {
-    return $axios.get(`${resource}?limit=${limit}`)
+  getRandom() {
+    return $axios.get(`${resource}/search?format=jpg`, {
+      headers: {
+        'x-api-key': process.env.API_KEY
+      }
+    })
   },
 })
