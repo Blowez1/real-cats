@@ -39,10 +39,7 @@ export default {
 
   },
 
-  env: {
-    API_KEY: '509dbbc9-96bd-4719-ba30-552f34d356e2',
-  },
-
+  serverMiddleware: [{ path: '/api', handler: '~/api/index.js' }],
   // Global CSS: https://go.nuxtjs.dev/config-css
   css: [],
 
