@@ -1,5 +1,4 @@
 export default {
-  // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'Real Cats',
     htmlAttrs: {
@@ -39,25 +38,27 @@ export default {
 
   },
 
-  serverMiddleware: [{ path: '/api', handler: '~/api/index.js' }],
-  // Global CSS: https://go.nuxtjs.dev/config-css
+  serverMiddleware: [{
+    path: '/api',
+    handler: '~/api/index.js'
+  }],
+
   css: [],
 
-  // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
+
   plugins: [
     '~/plugins/repositories.js',
     '~/plugins/services.plugin.js',
   ],
 
-  // Auto import components: https://go.nuxtjs.dev/config-components
+
   components: true,
 
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
+
   buildModules: [],
 
-  // Modules: https://go.nuxtjs.dev/config-modules
+
   modules: [
-    // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
     '@nuxtjs/proxy'
   ],
@@ -65,21 +66,20 @@ export default {
     color: '#002D70',
     height: '5px'
   },
-  // Axios module configuration: https://go.nuxtjs.dev/config-axios
+
   axios: {
     proxy: true,
-    // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
+
   },
   proxy: {
 
     '/api': {
-      target: 'https://api.thecatapi.com/v1/',
       pathRewrite: {
         '^/api/': ''
       }
     },
   },
 
-  // Build Configuration: https://go.nuxtjs.dev/config-build
+
   build: {}
 }
