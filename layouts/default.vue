@@ -1,18 +1,22 @@
 <template>
   <div>
+    <Header />
     <Nuxt />
   </div>
 </template>
-<script>
-export default {
-  mounted() {
-    const token = localStorage.getItem("token");
+<style lang="scss" >
+@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap");
 
-    if (token) {
-      this.$store.dispatch("auth/setToken", token);
-    } else {
-      this.$store.dispatch("auth/setToken", null);
-    }
-  },
-};
-</script>
+body {
+  background: url("../assets/img/background.jpg");
+  background-size: cover;
+  background-repeat: no-repeat;
+  font-family: "Rubik", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+</style>

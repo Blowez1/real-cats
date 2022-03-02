@@ -29,7 +29,7 @@ export default {
     }]
 
   },
-  
+
   env: {
     API_KEY: '509dbbc9-96bd-4719-ba30-552f34d356e2',
   },
@@ -52,13 +52,25 @@ export default {
   // Modules: https://go.nuxtjs.dev/config-modules
   modules: [
     // https://go.nuxtjs.dev/axios
-    '@nuxtjs/axios'
+    '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
-
+  loading: {
+    color: '#002D70',
+    height: '5px'
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
+    proxy: true,
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
-    baseURL: 'https://api.thecatapi.com/v1/',
+  },
+  proxy: {
+    '/api/': {
+      target: 'https://api.thecatapi.com/v1/',
+      pathRewrite: {
+        '^/api/': ''
+      }
+    }
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
