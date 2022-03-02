@@ -9,10 +9,13 @@ export const actions = {
   async login({ commit }, user) {
 
     const res = this.$AuthService.login(user)
+
     const { status } = res
 
     if (status === 'success') {
-      commit('LOGIN_SUCCESS', res.user)
+
+      commit('SET_USER', res.user)
+
       Toastify({
         text: 'Success you are logged in',
         duration: 2000,
@@ -21,12 +24,14 @@ export const actions = {
 
       setTimeout(await this.$router.push('/') , 2000);
       
-    }else {
+    } else {
+
       Toastify({
         text: 'Incorrect username or password',
         duration: 3000,
         backgroundColor: 'linear-gradient(to right, #ff6c6c, #f66262)'
       }).showToast();
+
     }
 
   },
@@ -38,7 +43,7 @@ export const actions = {
 }
 
 export const mutations = {
-  LOGIN_SUCCESS(state, user) {
+  SET_USER(state, user) {
     state.loggedIn = true
     state.user = user
   },

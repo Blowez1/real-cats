@@ -34,6 +34,7 @@
 </template>
 <script>
 import { mapActions } from "vuex";
+import Toastify from 'toastify-js'
 
 export default {
   data() {
@@ -50,8 +51,12 @@ export default {
         password: this.password,
       };
 
-      if (this.username == "" && this.password == "") {
-        alert("Lütfen tüm alanları doldurunuz.");
+      if (this.username == "" || this.password == "") {
+        Toastify({
+        text: 'Please enter your username and password',
+        duration: 3000,
+        backgroundColor: 'linear-gradient(to right, #ff6c6c, #f66262)'
+      }).showToast();
       } else {
         this.login(user);
       }
