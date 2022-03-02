@@ -5,7 +5,6 @@
   </div>
 </template>
 <style lang="scss" >
-@import url("https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap");
 
 body {
   background: url("../assets/img/background.jpg");
@@ -14,6 +13,7 @@ body {
   font-family: "Rubik", sans-serif;
   min-height: 100vh;
   overflow: hidden;
+  font-weight: 500;
 }
 
 * {

@@ -23,13 +23,19 @@ export default {
       }
     ],
     link: [{
-      rel: 'icon',
-      type: 'image/x-icon',
-      href: '/favicon.png'
-    }, {
-      rel: 'stylesheet',
-      href: 'https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css'
-    }]
+        rel: 'icon',
+        type: 'image/x-icon',
+        href: '/favicon.png'
+      }, {
+        rel: 'stylesheet',
+        href: 'https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css'
+      },
+      {
+        rel: 'stylesheet',
+        href: 'https://fonts.googleapis.com/css2?family=Rubik:wght@500&display=swap'
+
+      }
+    ]
 
   },
 
@@ -71,9 +77,11 @@ export default {
 
     '/api': {
       target: 'https://api.thecatapi.com/v1/',
-      pathRewrite: { '^/api/': '' },
+      pathRewrite: {
+        '^/api/': ''
+      },
       logLevel: 'debug',
-  },
+    },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
