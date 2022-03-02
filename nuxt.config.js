@@ -25,7 +25,10 @@ export default {
     link: [{
       rel: 'icon',
       type: 'image/x-icon',
-      href: '/favicon.ico'
+      href: '/favicon.png'
+    }, {
+      rel: 'stylesheet',
+      href: 'https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css'
     }]
 
   },
@@ -65,12 +68,12 @@ export default {
     // Workaround to avoid enforcing hard-coded localhost:3000: https://github.com/nuxt-community/axios-module/issues/308
   },
   proxy: {
-    '/api/': {
+
+    '/api': {
       target: 'https://api.thecatapi.com/v1/',
-      pathRewrite: {
-        '^/api/': ''
-      }
-    }
+      pathRewrite: { '^/api/': '' },
+      logLevel: 'debug',
+  },
   },
 
   // Build Configuration: https://go.nuxtjs.dev/config-build

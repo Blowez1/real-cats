@@ -12,6 +12,8 @@ body {
   background-size: cover;
   background-repeat: no-repeat;
   font-family: "Rubik", sans-serif;
+  min-height: 100vh;
+  overflow: hidden;
 }
 
 * {

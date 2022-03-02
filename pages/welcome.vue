@@ -1,8 +1,12 @@
 <template>
-    <div>Hoşgeldin üye girişi yapıp fotoğrafları görüntüleyebilirsin.</div>
+    <Welcome/>
 </template>
 <script>
+import Welcome from "../components/Welcome/index.vue";
 export default {
     name : "WelcomePage",
+    components : {
+        Welcome
+    }
 }
 </script>
