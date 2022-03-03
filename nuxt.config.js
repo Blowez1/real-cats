@@ -69,15 +69,6 @@ export default {
 
   axios: {
     proxy: true,
-
-  },
-  proxy: {
-
-    '/api': {
-      pathRewrite: {
-        '^/api/': ''
-      }
-    },
   },
 
 
