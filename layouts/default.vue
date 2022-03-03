@@ -4,8 +4,19 @@
     <Nuxt />
   </div>
 </template>
+<script>
+export default {
+  mounted() {
+    const token = localStorage.getItem("token");
+    
+    if (token) {
+      this.$store.dispatch("auth/fetchUser", token);
+      this.$router.push("/");
+    }
+  },
+};
+</script>
 <style lang="scss" >
-
 body {
   background: url("../assets/img/background.jpg");
   background-size: cover;

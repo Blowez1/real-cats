@@ -2,19 +2,31 @@ import Toastify from 'toastify-js'
 
 export const state = () => ({
   loggedIn: false,
-  user: null
+  user: null,
+  token: null,
 })
 
 export const actions = {
-  async login({ commit }, user) {
+  async login({
+    commit
+  }, user) {
 
     const res = this.$AuthService.login(user)
 
-    const { status } = res
+    const {
+      status
+    } = res
 
     if (status === 'success') {
 
-      commit('SET_USER', res.user)
+      const newUser = {
+        name: res.user.name,
+        username: res.user.username,
+        email: res.user.email,
+      }
+
+      commit('SET_USER', newUser)
+      commit('SET_TOKEN', res.user.token)
 
       Toastify({
         text: 'Success you are logged in',
@@ -22,8 +34,8 @@ export const actions = {
         backgroundColor: 'linear-gradient(to right, #003c95, #003c95)'
       }).showToast();
 
-      setTimeout(await this.$router.push('/') , 2000);
-      
+      setTimeout(await this.$router.push('/'), 2000);
+
     } else {
 
       Toastify({
@@ -35,10 +47,37 @@ export const actions = {
     }
 
   },
-  logout({ commit }) {
+  logout({
+    commit
+  }) {
     commit('LOGOUT')
-    
+    this.$AuthService.logout();
     this.$router.push('/login')
+  },
+  fetchUser({
+    commit,
+    dispatch
+  }, token) {
+    const res = this.$AuthService.fetchUser(token)
+
+    const {
+      status
+    } = res
+
+    if (status === 'success') {
+
+      const newUser = {
+        name: res.user.name,
+        username: res.user.username,
+        email: res.user.email,
+      }
+
+      commit('SET_USER', newUser)
+      commit('SET_TOKEN', res.user.token)
+
+    } else {
+      dispatch('logout')
+    }
   }
 }
 
@@ -51,10 +90,14 @@ export const mutations = {
     state.loggedIn = false
     state.user = null
   },
+  SET_TOKEN(state, token) {
+    state.token = token,
+      state.loggedIn = true
+  }
 }
 
 export const getters = {
-    isAuthenticated(state) {
-        return state.loggedIn
-    }
+  isAuthenticated(state) {
+    return state.loggedIn
+  }
 }
