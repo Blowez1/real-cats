@@ -77,7 +77,10 @@ export default {
   display: flex;
   position: relative;
 
-
+  .btn-text {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+  }
 
   .btn-loader {
     opacity: 0;
@@ -91,6 +94,7 @@ export default {
   &.loading { 
 
     .btn-text {
+      opacity: 0;
       visibility: hidden;
     }
     .btn-loader {
