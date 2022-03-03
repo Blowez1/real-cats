@@ -6,7 +6,6 @@
           <img :src="cat.url" :key="cat.id" alt="cat image" />
         </transition>
       </div>
-      {{ loading }}
       <button @click="getCat()" :class="loadingClass(loading)" class="change-btn">
         <span class="btn-text">Change</span>
         <span class="btn-loader">
