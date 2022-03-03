@@ -6,8 +6,13 @@
           <img :src="cat.url" :key="cat.id" alt="cat image" />
         </transition>
       </div>
-
-      <button @click="changeCat()" class="change-btn">Change</button>
+      {{ loading }}
+      <button @click="getCat()" :class="loadingClass(loading)" class="change-btn">
+        <span class="btn-text">Change</span>
+        <span class="btn-loader">
+          <img src="~/assets/img/loader.svg" alt="">
+        </span>
+      </button>
     </div>
   </main>
 </template>
@@ -17,12 +22,26 @@ import { mapState, mapActions } from "vuex";
 
 export default {
   name: "CatsComponent",
+  data() {
+    return {
+      loading: false,
+    };
+  },
   computed: {
     ...mapState("cat", ["cat"]),
   },
   methods: {
     ...mapActions({ changeCat: "cat/get_cat" }),
-  }
+    getCat() {
+      this.loading = true;
+      this.changeCat().then(() => {
+        this.loading = false;
+      });
+    },
+    loadingClass(bool) {
+      return bool ? "loading" : "";
+    },
+  },
 };
 </script>
 
@@ -56,7 +75,33 @@ export default {
   font-size: 1.35rem;
   font-family: "Rubik", sans-serif;
   cursor: pointer;
+  display: flex;
+  position: relative;
+
+
+
+  .btn-loader {
+    opacity: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+
+  &.loading { 
+
+    .btn-text {
+      visibility: hidden;
+    }
+    .btn-loader {
+      opacity: 1;
+      visibility: visible;
+    }
+  }
 }
+
+
 
 .fade-enter-active,
 .fade-leave-active {
