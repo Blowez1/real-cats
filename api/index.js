@@ -12,7 +12,15 @@ app.get('/images/getRandom', async (req, res) => {
       'x-api-key': process.env.API_KEY
     }
   });
-  res.send(response.data);
+  const { data,status } = response;
+
+  if (status === 200) {
+    res.status(200).send(data);
+  }else {
+    res.status(400).send({
+      status: 'Error'
+    });
+  }
 })
 
 module.exports = app
